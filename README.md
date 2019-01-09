@@ -32,5 +32,5 @@ DISCORD: A354-PH#1301
 * Custom whitelist messages.
 * Added variables for your awesome customised messages!
 
-This plugin is currently in BETA, so if you have something to report, then please open an issues via the Issues tab on github.
+This plugin is currently in BETA, so if you have something to report, then please open an issue via the Issues tab on github.
 Thank you!
