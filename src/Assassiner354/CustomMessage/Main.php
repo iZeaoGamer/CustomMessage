@@ -30,15 +30,14 @@ class Main extends PluginBase implements Listener {
 	*/
     public function onPreLogin(PlayerPreLoginEvent $event): void {
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-		$reason = $cfg->get("whitelist.reason");
+		$message = $cfg->get("whitelist.message");
 	    	
 		$player = $event->getPlayer();
 		$name = $player->getName();
 	    
 		if($cfg->get("custom-whitelist") == true){
 		if(!$player->isWhitelisted($name)) {
-			$whitelistedMessage = str_replace(["{reason}", "{line}", "&"], [$reason, "\n", "§"], $cfg->get("whitelist.message"));
-			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason")); //To-do see if this method works.
+			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $message);
 			$player->kick("", $whitelistedMessage, false);
 		} else {
 			if($cfg->get("custom-whitelist") == false){
