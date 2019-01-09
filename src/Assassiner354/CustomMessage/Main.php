@@ -17,7 +17,7 @@ class Main extends PluginBase implements Listener {
 	* @return void
 	*/
 	public function onEnable(): void{
-        $this->getLogger()->info("Custom Whitelist Reason enabled by Assassiner354");
+        $this->getLogger()->info("CustomMessage enabled by Assassiner354");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         @mkdir($this->getDataFolder());
