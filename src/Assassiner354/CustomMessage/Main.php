@@ -12,15 +12,23 @@ use pocketmine\utils\TextFormat as TF;
 
 class Main extends PluginBase implements Listener {
 	
-	public function onEnable(){
+	/* Enables the plugin on server startup.
+	*
+	* @return void
+	*/
+	public function onEnable(): void{
         $this->getLogger()->info("Custom Whitelist Reason enabled by Assassiner354");
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
 
         @mkdir($this->getDataFolder());
         $this->saveDefaultConfig();
         $this->getResource("config.yml");
-    }    
-    public function onPreLogin(PlayerPreLoginEvent $event) {
+    }
+	/*Before a player joins the server. This'll be where: custom-ban, and custom-whitelist will be detected.
+	*
+	* @return void
+	*/
+    public function onPreLogin(PlayerPreLoginEvent $event): void {
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
 		$reason = $cfg->get("whitelist.reason");
 	    	
