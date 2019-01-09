@@ -11,14 +11,14 @@ custom-ban: true
 ## Choose whether you want custom ban message to show below (If you set this to true, banned.message and  no.banned.reason.message option will show in the ban message. If you set "custom-ban" to false, the default ban message will show.
 
 ## Whitelist reason - Add it below. Here are the variables you can use for the whitelist reason below:
-## § - For color code.
-whitelist.reason: "§cServer currently in maintenance mode."
+## & - For color code.
+whitelist.reason: "&cServer currently in maintenance mode."
 
 ## NEW: Whitelist message - Put your whitelist message below! Here are the variables you can use for the whitelist message:
 ## {line} - New line.
 ## {reason} Whitelist reason which is above, in which you can add to the whitelist message below to make life more easier.
-## § - For color code.
-whitelist.message: "§cServer currently whitelisted!{line}§bReason: §3{reason}"
+## & - For color code.
+whitelist.message: "&cServer currently whitelisted!{line}&bReason: &3{reason}"
 
 
 ### NEW: BANNED MESSAGE AND BANNED REASONS SECTION BELOW:
