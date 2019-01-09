@@ -42,7 +42,7 @@ class Main extends PluginBase implements Listener {
 		} else {
 			if($cfg->get("custom-whitelist") == false){
 				if(!$player->isWhitelisted($name)){
-					$player->close("", $event->getKickMessage());
+					$player->kick("", $event->getKickMessage());
 		}
 	    //Custom banned system:
 		if($cfg->get("custom-ban") == true){
