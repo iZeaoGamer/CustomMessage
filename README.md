@@ -8,7 +8,7 @@ Customisable Messages for PMMP / Pocketmine.
 
 - Now place it in your plugins folder and start the server and stop it.
 
-- Go to your plugins_data folder and in the CustomMessage folder read the config.yml, edit the config.yml to your likings, and then restart your server.
+- Go to your plugins_data folder and in the CustomMessage folder, edit the config.yml to your likings, and then restart your server.
 
 # Social
 
