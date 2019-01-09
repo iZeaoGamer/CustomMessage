@@ -12,7 +12,7 @@ use pocketmine\utils\TextFormat as TF;
 
 class Main extends PluginBase implements Listener {
 	
-	/* Enables the plugin on server startup.
+	/** Enables the plugin on server startup.
 	*
 	* @return void
 	*/
@@ -24,7 +24,7 @@ class Main extends PluginBase implements Listener {
         $this->saveDefaultConfig();
         $this->getResource("config.yml");
     }
-	/*Before a player joins the server. This'll be where: custom-ban, and custom-whitelist will be detected.
+	/** Before a player joins the server. This'll be where: custom-ban, and custom-whitelist will be detected.
 	*
 	* @return void
 	*/
