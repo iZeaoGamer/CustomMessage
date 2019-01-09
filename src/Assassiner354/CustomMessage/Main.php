@@ -39,11 +39,11 @@ class Main extends PluginBase implements Listener {
 		if(!$player->isWhitelisted($name)) {
 			$whitelistedMessage = str_replace(["{reason}", "{line}", "&"], [$reason, "\n", "§"], $cfg->get("whitelist.message"));
 			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason")); //To-do see if this method works.
-			$player->close("", $whitelistedMessage);
+			$player->kick("", $whitelistedMessage, false);
 		} else {
 			if($cfg->get("custom-whitelist") == false){
 				if(!$player->isWhitelisted($name)){
-					$player->kick("", $event->getKickMessage());
+					$player->kick("", $event->getKickMessage(), false);
 		}
 	    //Custom banned system:
 		if($cfg->get("custom-ban") == true){
@@ -56,7 +56,7 @@ class Main extends PluginBase implements Listener {
                        $bannedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "§", $reason], $cfg->get("banned.message")); 
 		} else {
 			$bannedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("no.banned.reason.message"));
-			$player->close("", $bannedMessage);
+			$player->kick("", $bannedMessage, false);
                 }
 			} else {
 				if($cfg->get("custom-ban") == false){
@@ -66,7 +66,7 @@ class Main extends PluginBase implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-					$player->kick("", $event->getKickMessage());
+					$player->kick("", $event->getKickMessage(), false);
 				}
 			}
 		}
