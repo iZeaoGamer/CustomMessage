@@ -29,8 +29,8 @@ class Main extends PluginBase implements Listener {
 	    
 		if($cfg->get("custom-whitelist") == true){
 		if(!$player->isWhitelisted($name)) {
-			$whitelistedMessage = str_replace(["{reason}", "{line}", "&"], [$reason, "\n", ""], $cfg->get("whitelist.message"));
-			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", ""], $cfg->get("whitelist.reason")); //To-do see if this method works.
+			$whitelistedMessage = str_replace(["{reason}", "{line}", "&"], [$reason, "\n", "§"], $cfg->get("whitelist.message"));
+			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason")); //To-do see if this method works.
 			$player->close("", $whitelistedMessage);
 		} else {
 			if($cfg->get("custom-whitelist") == false){
@@ -45,9 +45,9 @@ class Main extends PluginBase implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-                       $bannedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "", $reason], $cfg->get("banned.message")); 
+                       $bannedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "§", $reason], $cfg->get("banned.message")); 
 		} else {
-			$bannedMessage = str_replace(["{line}", "&"], ["\n", ""], $cfg->get("no.banned.reason.message"));
+			$bannedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("no.banned.reason.message"));
 			$player->close("", $bannedMessage);
                 }
 			} else {
