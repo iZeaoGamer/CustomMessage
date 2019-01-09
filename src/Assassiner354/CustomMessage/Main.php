@@ -48,6 +48,7 @@ class Main extends PluginBase implements Listener {
 		if($cfg->get("custom-ban") == true){
 	     $banList = $player->getServer()->getNameBans();
 	        if ($banList->isBanned(strtolower($player->getName()))) {
+			$bannedMessage = "";
 	    $banEntry = $banList->getEntries();
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
@@ -65,7 +66,7 @@ class Main extends PluginBase implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-					$player->close("", $event->getKickMessage());
+					$player->kick("", $event->getKickMessage());
 				}
 			}
 		}
