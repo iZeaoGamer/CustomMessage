@@ -44,7 +44,7 @@ class Main extends PluginBase implements Listener {
 		} else {
 			if($cfg->get("custom-whitelist") == false){
 				if(!$player->isWhitelisted($name)){
-					$event->setKickMessage("Server is white-listed"); //To-Do change methods to make this system look better. 
+					$event->setKickMessage($event->getKickMessage()); //To-do see if this method works.
 					$event->setCancelled(true);
 					
 				}
@@ -71,7 +71,7 @@ class Main extends PluginBase implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-					$event->setKickMessage("You are banned"); //To-Do change methods to make this system work better!
+					$event->setKickMessage($event->getKickMessage()); //To-do see if this method works.
             $event->setCancelled(true);
 				}
 			}
