@@ -12,8 +12,10 @@ custom-ban: true
 
 ## NEW: Whitelist message - Put your whitelist message below! Here are the variables you can use for the whitelist message:
 ## {line} - New line.
+## {reason} - When the server get's whitelisted for a specific reason, it'll display by using {reason} variable.
 ## & - For color code.
-whitelist.message: "&cServer currently whitelisted!"
+whitelist.message: "&cServer currently whitelisted! &bReason: &3{reason}"
+whitelist.reason: "&cStill underway maintenance."
 
 
 ### NEW: BANNED MESSAGE AND BANNED REASONS SECTION BELOW:

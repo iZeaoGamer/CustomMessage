@@ -8,7 +8,6 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerPreLoginEvent;
 
 use pocketmine\utils\Config;
-use pocketmine\utils\TextFormat as TF;
 
 class Main extends PluginBase implements Listener {
 	
@@ -30,32 +29,39 @@ class Main extends PluginBase implements Listener {
 	*/
     public function onPreLogin(PlayerPreLoginEvent $event): void {
 		$cfg = new Config($this->getDataFolder() . "config.yml", Config::YAML);
-		$message = $cfg->get("whitelist.message");
 	    	
 		$player = $event->getPlayer();
 		$name = $player->getName();
 	    
 		if($cfg->get("custom-whitelist") == true){
 		if(!$player->isWhitelisted($name)) {
-			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $message);
-			$player->close("", $whitelistedMessage);
+			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.message"));
+			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", ""], $cfg->get("whitelist.reason"));
+        }else{
+          $event->setKickMsssage($whitelistedMessage);
+          $event->setCancelled(true);
+        }
 		} else {
 			if($cfg->get("custom-whitelist") == false){
 				if(!$player->isWhitelisted($name)){
-					$player->kick("", $event->getKickMessage());
+					$event->setKickMessage("Server is white-listed"); //To-Do change methods to make this system look better. 
+					$event->setCancelled(true);
+					
+				}
+			}
 		}
-	    //Custom banned system:
 		if($cfg->get("custom-ban") == true){
-	     $banList = $player->getServer()->getNameBans();
-	        if ($banList->isBanned(strtolower($player->getName()))) {
-	    $banEntry = $banList->getEntries();
-            $entry = $banEntry[strtolower($player->getName())];
-                $reason = $entry->getReason();
-                if ($reason != null || $reason != "") {
-                       $bannedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "§", $reason], $cfg->get("banned.message")); 
-		} else {
-			$bannedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("no.banned.reason.message"));
-			$player->close("", $bannedMessage);
+        $banList = $player->getServer()->getNameBans();
+        if($banList->isBanned(strtolower($player->getName()))){
+          $banEntry = $banList->getEntries();
+          $entry = $banEntry[strtolower($player->getName())];
+          $reason = $entry->getReason();
+          if($reason != null || $reason != ""){
+            $bannedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "", $reason], $cfg->get("banned.message")); 
+          }else{
+            $bannedMessage = str_replace(["{line}", "&"], ["\n", ""], $cfg->get("no.banned.reason.message"));
+            $event->setKickMessage($bannedMessage);
+            $event->setCancelled(true);
                 }
 			} else {
 				if($cfg->get("custom-ban") == false){
@@ -65,7 +71,8 @@ class Main extends PluginBase implements Listener {
             $entry = $banEntry[strtolower($player->getName())];
                 $reason = $entry->getReason();
                 if ($reason != null || $reason != "") {
-					$player->kick("", $event->getKickMessage());
+					$event->setKickMessage("You are banned"); //To-Do change methods to make this system work better!
+            $event->setCancelled(true);
 				}
 			}
 		}
@@ -73,6 +80,3 @@ class Main extends PluginBase implements Listener {
 		}
 		}
 		}
-    }
-}
-}
