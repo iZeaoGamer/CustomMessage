@@ -35,12 +35,10 @@ class Main extends PluginBase implements Listener {
 	    
 		if($cfg->get("custom-whitelist") == true){
 		if(!$player->isWhitelisted($name)) {
-			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.message"));
-			$whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason"));
-        }else{
+         $whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason"));
+			$whitelistedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "§", $cfg->get("whitelist.reason")], $cfg->get("whitelist.message"));
           $event->setKickMessage($whitelistedMessage);
           $event->setCancelled(true);
-        }
 		} else {
 			if($cfg->get("custom-whitelist") == false){
 				if(!$player->isWhitelisted($name)){
@@ -80,3 +78,4 @@ class Main extends PluginBase implements Listener {
 		}
 		}
 		}
+}
