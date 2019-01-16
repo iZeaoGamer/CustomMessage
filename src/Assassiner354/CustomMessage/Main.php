@@ -33,14 +33,14 @@ class Main extends PluginBase implements Listener {
 		$player = $event->getPlayer();
 		$name = $player->getName();
 	    
-		if($cfg->get("custom-whitelist") == true){
+		if($cfg->get("custom-whitelist") === true){
 		if(!$player->isWhitelisted($name)) {
          $whitelistedMessage = str_replace(["{line}", "&"], ["\n", "§"], $cfg->get("whitelist.reason"));
 			$whitelistedMessage = str_replace(["{line}", "&", "{reason}"], ["\n", "§", $cfg->get("whitelist.reason")], $cfg->get("whitelist.message"));
           $event->setKickMessage($whitelistedMessage);
           $event->setCancelled(true);
 		} else {
-			if($cfg->get("custom-whitelist") == false){
+			if($cfg->get("custom-whitelist") === false){
 				if(!$player->isWhitelisted($name)){
 					$event->setKickMessage($event->getKickMessage()); //To-do see if this method works.
 					$event->setCancelled(true);
@@ -48,7 +48,7 @@ class Main extends PluginBase implements Listener {
 				}
 			}
 		}
-		if($cfg->get("custom-ban") == true){
+		if($cfg->get("custom-ban") === true){
         $banList = $player->getServer()->getNameBans();
         if($banList->isBanned(strtolower($player->getName()))){
           $banEntry = $banList->getEntries();
@@ -62,7 +62,7 @@ class Main extends PluginBase implements Listener {
             $event->setCancelled(true);
                 }
 			} else {
-				if($cfg->get("custom-ban") == false){
+				if($cfg->get("custom-ban") === false){
 					$banList = $player->getServer()->getNameBans();
 	        if ($banList->isBanned(strtolower($player->getName()))) {
 	             $banEntry = $banList->getEntries();
